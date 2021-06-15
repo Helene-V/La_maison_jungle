@@ -1,4 +1,5 @@
-import { plantList} from '../datas/plantList'
+import { plantList } from '../datas/plantList'
+import '../styles/ShoppingList.css'
 
 function ShoppingList() {
 	const categories = plantList.reduce(
@@ -14,9 +15,12 @@ function ShoppingList() {
 					<li key={cat}>{cat}</li>
 				))}
 			</ul>
-			<ul>
+			<ul className='lmj-plant-list'>
 				{plantList.map((plant) => (
-					<li key={plant.id}>{plant.name}</li>
+					<li key={plant.id} className='lmj-plant-item'>
+						    {plant.name}
+                            {plant.isSpecialOffer && <div className='lmj-sales'>Soldes</div>}
+					</li>
 				))}
 			</ul>
 		</div>
@@ -27,4 +31,8 @@ export default ShoppingList
 
 /*géneration d'une key /
 Méthodes pour itérer sur de la data : 
-map (), forEach(), filter (), reduce()*/
+map (), forEach(), filter (), reduce()
+Exemples de Conditions :
+{plant.isBestSale && plant.category === "classique" && <span>🔥</span>}
+{plant.isBestSale || plant.category === "classique" && <span>🔥</span>}
+*/
